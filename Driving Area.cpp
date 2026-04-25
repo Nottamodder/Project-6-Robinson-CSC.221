@@ -14,28 +14,25 @@ int main()
 {
     string safestRegion;
     int lowestAccidents;
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
     findSafestRegion(safestRegion, lowestAccidents);
     displayResult(safestRegion, lowestAccidents);
         return 0;
 }
-/* Prompts the user for a region name and number of accidents.
-Accident count is validated and returned through reference parameter. */
 void getRegionData(string& name, int& accidents)
 {
     cout << "\nEnter the name of the region: ";
-    cin.ignore(numeric_limits<streamsize>::max(), '\n');
     getline(cin, name);
+
     accidents = getValidatedAccidents();
 }
-/* Validates that accident input is greater than 0. */
 int getValidatedAccidents()
 {
     int accidents;
-
-        while (true)
-        {
-            cout << "Enter the number of accidents: ";
-            cin >> accidents;
+    while (true)
+    {
+        cout << "Enter the number of accidents: ";
+        cin >> accidents;
 
         if (cin.fail() || accidents <= 0)
         {
@@ -49,32 +46,30 @@ int getValidatedAccidents()
         }
     }
 }
-/* Determines whether one accident count is less than or equal to another. */
 bool isLower(int value1, int value2)
 {
     return value1 <= value2;
 }
-/* Finds the region with the lowest number of accidents. */
 void findSafestRegion(string& safestName, int& lowestAccidents)
-{
+    {
     string name;
     int accidents;
-    cout << "Region 1:";
+    cout << "Region 1";
     getRegionData(name, accidents);
     safestName = name;
     lowestAccidents = accidents;
-    for (int i = 2; i <= NUM_REGIONS; i++)
-    {
-        cout << "\nRegion " << i << ":";
-        getRegionData(name, accidents);
-        if (isLower(accidents, lowestAccidents))
+        for (int i = 2; i <= NUM_REGIONS; i++)
         {
+        cout << "\nRegion " << i;
+        getRegionData(name, accidents);
+
+        if (isLower(accidents, lowestAccidents))
+            {
             lowestAccidents = accidents;
             safestName = name;
+            }
         }
     }
-}
-/* Displays the region with the lowest number of accidents. */
 void displayResult(const string& safestName, int lowestAccidents)
 {
     cout << "\n--- Safest Region ---\n";
