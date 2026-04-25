@@ -14,7 +14,6 @@ int main()
 {
     string safestRegion;
     int lowestAccidents;
-    cin.ignore(numeric_limits<streamsize>::max(), '\n');
     findSafestRegion(safestRegion, lowestAccidents);
     displayResult(safestRegion, lowestAccidents);
         return 0;
@@ -28,20 +27,22 @@ void getRegionData(string& name, int& accidents)
 int getValidatedAccidents()
 {
     int accidents;
-    while (true)
-    {
-            cout << "Enter the number of accidents: ";
-            cin >> accidents;
-        if (cin.fail() || accidents <= 0)
+        while (true)
+        {
+        cout << "Enter the number of accidents: ";
+        cin >> accidents;
+            if (cin.fail() || accidents <= 0)
             {
             cout << "Invalid input. Accidents must be greater than 0.\n";
             cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
             }
-        else
-        {
-            return accidents;
+            else
+            {
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                return accidents;
+            }
         }
-    }
 }
 bool isLower(int value1, int value2)
 {
