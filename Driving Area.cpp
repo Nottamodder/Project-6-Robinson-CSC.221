@@ -23,7 +23,6 @@ void getRegionData(string& name, int& accidents)
 {
     cout << "\nEnter the name of the region: ";
     getline(cin, name);
-
     accidents = getValidatedAccidents();
 }
 int getValidatedAccidents()
@@ -31,15 +30,13 @@ int getValidatedAccidents()
     int accidents;
     while (true)
     {
-        cout << "Enter the number of accidents: ";
-        cin >> accidents;
-
+            cout << "Enter the number of accidents: ";
+            cin >> accidents;
         if (cin.fail() || accidents <= 0)
-        {
+            {
             cout << "Invalid input. Accidents must be greater than 0.\n";
             cin.clear();
-            cin.ignore(numeric_limits<streamsize>::max(), '\n');
-        }
+            }
         else
         {
             return accidents;
@@ -54,13 +51,13 @@ void findSafestRegion(string& safestName, int& lowestAccidents)
     {
     string name;
     int accidents;
-    cout << "Region 1";
+    cout << "Region 1\n";
     getRegionData(name, accidents);
     safestName = name;
     lowestAccidents = accidents;
         for (int i = 2; i <= NUM_REGIONS; i++)
         {
-        cout << "\nRegion " << i;
+        cout << "\nRegion " << i << "\n";
         getRegionData(name, accidents);
 
         if (isLower(accidents, lowestAccidents))
